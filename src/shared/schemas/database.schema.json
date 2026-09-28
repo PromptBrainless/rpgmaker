@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rpgmaker.local/schemas/database.schema.json",
+  "title": "GameDatabase",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["formatVersion", "actors", "items"],
+  "properties": {
+    "formatVersion": { "const": 1 },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "classId", "maxHp"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "classId": { "type": "string", "minLength": 1 },
+          "maxHp": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "price"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "price": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

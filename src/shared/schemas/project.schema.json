@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rpgmaker.local/schemas/project.schema.json",
+  "title": "ProjectManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["formatVersion", "name", "schemaVersion", "startMapId"],
+  "properties": {
+    "formatVersion": { "const": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "schemaVersion": { "type": "string", "minLength": 1 },
+    "startMapId": { "type": "string", "minLength": 1 }
+  }
+}

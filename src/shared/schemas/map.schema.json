@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rpgmaker.local/schemas/map.schema.json",
+  "title": "Map",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["formatVersion", "id", "name", "tileSize", "width", "height", "layers"],
+  "properties": {
+    "formatVersion": { "const": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "tileSize": { "type": "integer", "minimum": 8 },
+    "width": { "type": "integer", "minimum": 1 },
+    "height": { "type": "integer", "minimum": 1 },
+    "layers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "width", "height", "tiles"],
+        "properties": {
+          "name": {
+            "enum": ["ground", "terrain", "objects", "overlay", "collision", "regions", "events"]
+          },
+          "width": { "type": "integer", "minimum": 1 },
+          "height": { "type": "integer", "minimum": 1 },
+          "tiles": { "type": "array", "items": { "type": "integer" } }
+        }
+      }
+    }
+  }
+}
