@@ -1,0 +1,7 @@
+{
+  "formatVersion": 1,
+  "actors": [
+    { "id": "hero", "name": "Held", "classId": "adventurer", "maxHp": 20 }
+  ],
+  "items": [{ "id": "potion", "name": "Trank", "price": 10 }]
+}
