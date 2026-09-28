@@ -20,7 +20,9 @@ jobs:
           distribution: temurin
           java-version: "21"
       - uses: android-actions/setup-android@v3
-      - run: npm ci
+      - name: Install
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
       - run: npm test
       - run: npm run build
       - name: Add Android platform if missing

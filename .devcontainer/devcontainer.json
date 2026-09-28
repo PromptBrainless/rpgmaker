@@ -10,7 +10,7 @@
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "forwardPorts": [5173],
-  "postCreateCommand": "npm ci && bash .devcontainer/install-android-sdk.sh",
+  "postCreateCommand": "if [ -f package-lock.json ]; then npm ci; else npm install; fi && bash .devcontainer/install-android-sdk.sh",
   "customizations": {
     "vscode": {
       "extensions": [
