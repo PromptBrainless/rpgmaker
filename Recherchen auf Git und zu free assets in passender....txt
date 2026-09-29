@@ -1,0 +1,41 @@
+﻿Recherche-Ergebnisse: Architektur-Standards und Free Assets
+Für rasterbasierte 2D-Editoren (Kategorien: Boden, Bauteile, Wasser, Möbel etc.) haben sich auf GitHub und in der Open-Source-Entwicklung spezifische Standards etabliert.
+Passende Free Assets (CC0 / Public Domain):
+* Kenney.nl (RPG Urban / Topdown Serie): Bietet exakt die geforderten Kategorien. Die Tiles liegen meist im Format 64×64 px oder 32×32 px vor. Sie sind als Sprite-Sheets oder einzelne PNGs verfügbar und eignen sich ideal für Mobile-First-Web-Editoren.
+* Liberated Pixel Cup (LPC) via OpenGameArt: Ein modularer 32×32 px Standard. Sehr umfangreich für Figuren, Böden, Wasser (animiert) und Gebäude.
+* Asset-Integration: Web-Editoren nutzen meist ein zentrales Sprite-Sheet, das via CSS (Background-Position) oder HTML5 Canvas (drawImage mit Clipping-Parametern) auf die Zielgröße des Rasters gerendert wird.
+Architektur-Standards (GitHub Web-Editoren):
+* Datenstruktur: Karten werden als 1D- oder 2D-Arrays (meist JSON) gespeichert, wobei Integer-Werte als IDs für bestimmte Kacheln (Tiles) dienen (ähnlich dem Tiled-Editor-Format).
+* Asset-Mapping: Eine externe JSON-Konfiguration verknüpft Tile-IDs mit den Kategorien (Boden, Gebäude, etc.) und den X/Y-Koordinaten auf dem Sprite-Sheet.
+Der optimierte Agenten-Prompt inkl. Asset-Handling
+Aufgabe: Überarbeite die Funktionsleiste (Toolbar) des Editors "Feldwerk" und baue echte Bearbeitungswerkzeuge ein. Erstelle vorab einen 5-zeiligen technischen Plan mit Annahmen zur Integration in die bestehende Codebase. Setze den Plan anschließend sofort um.
+Kontext, Architektur & Assets:
+* Analysiere das bestehende State-Management und Render-System.
+* Asset-Vorgabe: Nutze ein standardisiertes 32×32 px oder 64×64 px Raster. Falls noch keine grafischen Assets im Repository existieren, binde quelloffene CC0-Assets (z. B. von Kenney.nl) für die definierten Kategorien ein. Sollte der Download scheitern, generiere programmatisch saubere, gut unterscheidbare SVG-Platzhalter (Inline oder Base64) für die Kategorien, damit die Funktionalität direkt visuell testbar ist.
+* Keine neuen Kategorien erfinden. Mappe die Assets strikt auf: Boden, Bauteile, Wasser, Möbel, Figuren, Gebäude, Bäume, Props, Oberfläche.
+UI/UX-Vorgaben (Mobil zuerst, Viewport 390 × 844):
+* Alle Touch-Ziele (Hitboxen, Buttons, Kacheln in der Palette) müssen zwingend ≥ 48 px groß sein.
+* Positionierung: Unten fixiert (Bottom Sheet), einhändig erreichbar.
+* Struktur: Zwei Ebenen. Die untere zeigt Hauptwerkzeuge (immer sichtbar). Die obere, dynamische Ebene zeigt spezifische Optionen oder die Asset-Palette des aktiven Werkzeugs als horizontal scrollbaren Streifen.
+* Das aktive Werkzeug wird visuell durch einen Goldrand und einen Tooltip/Namen hervorgehoben.
+Interaktions-Vorgaben (Touch):
+* Pinch-Zoom und Zwei-Finger-Pan zur Navigation auf der Arbeitsfläche müssen frei bleiben. Die Werkzeug-Nutzung (Zeichnen, Wischen, Tippen) darf diese Gesten nicht blockieren. Trenne Pointer-Events für UI und Canvas strikt.
+Werkzeuge (Strikte Priorität von oben nach unten, jedes isoliert & lauffähig umsetzen):
+1. Stift & Radierer: Einzelne Kacheln durch Tippen/Ziehen setzen oder löschen.
+2. Fläche füllen (Flood-Fill) & Rechteck: Kontinuierliche Bereiche füllen oder Kachel-Rechtecke aufziehen.
+3. Auswahl (Rechteck): Bereich markieren, Verschieben, Kopieren, Einfügen, Löschen.
+4. Pipette: Asset-Typ (z. B. spezieller Bodentyp) durch Antippen einer Kachel auf der Arbeitsfläche in die aktive Auswahl übernehmen.
+5. Ebenenverwaltung: "Boden", "Objekte", "Overlay". Jede Ebene separat umschaltbar (sichtbar/unsichtbar) und sperrbar (Lock).
+6. Historie (Undo/Redo): Implementiere ein Command-Pattern für speichereffizientes Rückgängigmachen (mind. 50 Schritte). Fange die native Zurück-Taste des Browsers sinnvoll ab, um versehentliches Verlassen der Seite zu verhindern.
+7. Präzisions-Tools: Raster (Grid) ein-/ausschaltbar. Lupe (Magnifier-Overlay) beim Platzieren mit dem Finger.
+8. Palette: Kategoriensystem (Reiter), Suchfeld (Filter) und "Zuletzt benutzt". Lade die Thumbnails performant (Lazy Loading oder CSS-Sprites).
+Qualitätssicherung & Persistenz:
+* Ein Werkzeug pro Runde fertigstellen und testen, bevor das nächste codiert wird.
+* Performance: Auswahl, Undo und Flood-Fill müssen auf Rastern (mindestens 20 × 14 Kacheln) ruckelfrei bei 60 FPS laufen. Nutze requestAnimationFrame für Canvas-Updates.
+* Automatisches Speichern im localStorage. Wiederherstellung der Karte, des Zoom-Levels und des aktiven Werkzeugs nach einem Page-Reload.
+* Keine Auth, keine Datenbankanbindung.
+Abnahme (Agenten-Selbsttest): Prüfe den Code im Browser via CLI/Puppeteer oder simuliertem DOM. Melde nach Abschluss der Runde exakt:
+1. Welche Funktionen lauffähig integriert wurden.
+2. Wie die Touch-Ziele und Gesten-Konflikte gelöst wurden.
+3. Welche Fehler in der Konsole aufgetreten und behoben sind.
+4. Wo Platzhalter anstelle echter Assets verwendet werden mussten.

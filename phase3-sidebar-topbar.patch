@@ -1,0 +1,220 @@
+diff --git a/src/rpg/view/Workshop.tsx b/src/rpg/view/Workshop.tsx
+index f140aba..11b88e7 100644
+--- a/src/rpg/view/Workshop.tsx
++++ b/src/rpg/view/Workshop.tsx
+@@ -1,5 +1,5 @@
+ import { useEffect, useMemo, useRef, useState } from "react";
+-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Eraser, Hand, ImagePlus, Maximize2, Pause, Pencil, Play, RotateCcw, Shield, Undo2, Volume2, VolumeX } from "lucide-react";
++import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Eraser, Gamepad2, Hand, ImagePlus, Maximize2, Paintbrush, Pause, Pencil, Play, RotateCcw, Shield, Undo2, Volume2, VolumeX } from "lucide-react";
+ import { ObjectId, GroundId } from "../runtime/types.ts";
+ import { FOOT_MAX, MAP_MAX, MAP_MIN, spanAt, tileAt } from "../runtime/tilemap.ts";
+ import { artUrls } from "./assets.ts";
+@@ -345,93 +345,93 @@ export function Workshop() {
+     return list;
+   }, [palette, groundBrush, objectBrush, customs, shown, footW, footH]);
+ 
++  const goPlace = (id: (typeof PLACES)[number]["id"]) => {
++    openPlace(sim, id);
++    setName(sim.map.name);
++    setMapW(sim.map.width);
++    setMapH(sim.map.height);
++    setDialog(null);
++    setRead(false);
++    setUndos(0);
++  };
++
+   return (
+     <main className="flex h-dvh flex-col overflow-hidden bg-parchment text-ink">
+-      <header className="shrink-0 border-b border-line bg-panel">
+-        <div className="flex min-h-14 items-center gap-2 px-3 py-2">
+-        <div className="flex min-w-0 items-center gap-3">
+-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-parchment-deep text-moss" aria-hidden="true">
+-            <svg viewBox="0 0 24 24" className="h-5 w-5">
+-              <path fill="currentColor" d="M12 1.2 14.4 9.6 22.8 12 14.4 14.4 12 22.8 9.6 14.4 1.2 12 9.6 9.6Z" />
+-            </svg>
+-          </span>
+-          <div className="min-w-0">
+-          <p className="font-display text-lg leading-none tracking-tight">Feldwerk</p>
+-          <input
+-            aria-label="Name der Karte"
+-            value={name}
+-            maxLength={40}
+-            onChange={(event) => {
+-              const value = event.target.value;
+-              setName(value);
+-              sim.map.name = value || "Beispielstadt";
+-              saveTown(sim);
+-            }}
+-            className="w-36 bg-transparent text-sm text-ink-soft outline-none"
+-          />
+-          <p className="hidden text-sm text-ink-soft sm:block">
+-            {mapW} × {mapH} · {tilePx} px
+-          </p>
+-          </div>
+-        </div>
++      <header className="flex h-12 shrink-0 items-center gap-3 border-b border-line bg-panel px-3">
++        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-parchment-deep text-moss" aria-hidden="true">
++          <svg viewBox="0 0 24 24" className="h-4 w-4">
++            <path fill="currentColor" d="M12 1.2 14.4 9.6 22.8 12 14.4 14.4 12 22.8 9.6 14.4 1.2 12 9.6 9.6Z" />
++          </svg>
++        </span>
++        <p className="font-display text-lg leading-none tracking-tight">Feldwerk</p>
++        <input
++          aria-label="Name der Karte"
++          value={name}
++          maxLength={40}
++          onChange={(event) => {
++            const value = event.target.value;
++            setName(value);
++            sim.map.name = value || "Beispielstadt";
++            saveTown(sim);
++          }}
++          className="min-w-0 flex-1 bg-transparent text-sm text-ink-soft outline-none sm:max-w-56 sm:flex-none"
++        />
++        <p className="hidden text-sm text-ink-soft md:block">
++          {mapW} × {mapH} · {tilePx} px
++        </p>
+         <div className="ml-auto flex items-center gap-2">
+-          {read && mode === "play" && (
+-            <span className="hidden text-sm text-moss sm:inline">Gelesen</span>
+-          )}
+-          <button
+-            type="button"
+-            aria-pressed={muted}
+-            aria-label={muted ? "Ton an" : "Ton aus"}
++          {read && mode === "play" && <span className="hidden text-sm text-moss sm:inline">Gelesen</span>}
++          <IconChip
++            label={muted ? "Ton an" : "Ton aus"}
++            pressed={muted}
+             onClick={() => {
+               sim.muted = !sim.muted;
+               setMuted(sim.muted);
+               saveTown(sim);
+               if (!sim.muted) unlockAudio(sim);
+             }}
+-            className="grid h-11 w-11 place-items-center rounded-full border border-line bg-parchment text-ink"
+           >
+             {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+-          </button>
+-          <button
+-            type="button"
+-            aria-pressed={mode === "play"}
+-            onClick={() => setMode("play")}
+-            className={`h-11 rounded-full px-4 text-sm font-medium ${mode === "play" ? "bg-moss text-parchment" : "border border-line bg-parchment text-ink"}`}
+-          >
+-            Spielen
+-          </button>
++          </IconChip>
++        </div>
++      </header>
++
++      <div className="flex shrink-0 gap-1 overflow-x-auto border-b border-line bg-panel px-3 py-1 md:hidden">
++        {PLACES.map((place) => (
+           <button
++            key={place.id}
+             type="button"
+-            aria-pressed={mode === "draw"}
+-            onClick={() => setMode("draw")}
+-            className={`h-11 rounded-full px-4 text-sm font-medium ${mode === "draw" ? "bg-moss text-parchment" : "border border-line bg-parchment text-ink"}`}
++            aria-pressed={name === place.label}
++            onClick={() => goPlace(place.id)}
++            className={`h-11 shrink-0 rounded-full px-3 text-sm ${name === place.label ? "bg-moss text-parchment" : "border border-line bg-parchment text-ink"}`}
+           >
+-            Zeichnen
++            {place.label}
+           </button>
+-        </div>
+-        </div>
+-        <div className="flex flex-wrap gap-1 px-3 pb-2">
++        ))}
++      </div>
++
++      <div className="flex min-h-0 flex-1">
++        <nav aria-label="Bereiche" className="hidden w-20 shrink-0 flex-col gap-1 border-r border-line bg-panel p-2 md:flex">
++          {MODES.map((entry) => (
++            <NavButton key={entry.id} label={entry.label} active={mode === entry.id} onClick={() => setMode(entry.id)}>
++              {entry.icon}
++            </NavButton>
++          ))}
++          <span className="my-2 h-px bg-line" />
++          <p className="px-1 text-xs text-ink-soft">Orte</p>
+           {PLACES.map((place) => (
+             <button
+               key={place.id}
+               type="button"
+               aria-pressed={name === place.label}
+-              onClick={() => {
+-                openPlace(sim, place.id);
+-                setName(sim.map.name);
+-                setMapW(sim.map.width);
+-                setMapH(sim.map.height);
+-                setDialog(null);
+-                setRead(false);
+-                setUndos(0);
+-              }}
+-              className={`h-11 shrink-0 rounded-full px-3 text-sm ${name === place.label ? "bg-moss text-parchment" : "border border-line bg-parchment text-ink"}`}
++              onClick={() => goPlace(place.id)}
++              className={`min-h-11 rounded-xl px-1 text-sm ${name === place.label ? "bg-moss text-parchment" : "text-ink hover:bg-parchment-deep"}`}
+             >
+               {place.label}
+             </button>
+           ))}
+-        </div>
+-      </header>
++        </nav>
++        <div className="flex min-w-0 flex-1 flex-col">
+ 
+       <div className="relative min-h-0 flex-1">
+         <canvas
+@@ -793,6 +793,15 @@ export function Workshop() {
+           {tilePx} px{debugOn ? " · Kollision" : ""}
+         </span>
+       </footer>
++        </div>
++      </div>
++      <nav aria-label="Bereiche" className="grid shrink-0 grid-cols-2 border-t border-line bg-panel md:hidden">
++        {MODES.map((entry) => (
++          <NavButton key={entry.id} label={entry.label} active={mode === entry.id} onClick={() => setMode(entry.id)}>
++            {entry.icon}
++          </NavButton>
++        ))}
++      </nav>
+     </main>
+   );
+ }
+@@ -828,6 +837,35 @@ function objectName(sim: Sim, x: number, y: number, customs: CustomBrush[]) {
+   );
+ }
+ 
++const MODES: { id: "play" | "draw"; label: string; icon: React.ReactNode }[] = [
++  { id: "play", label: "Spielen", icon: <Gamepad2 size={20} /> },
++  { id: "draw", label: "Zeichnen", icon: <Paintbrush size={20} /> },
++];
++
++function NavButton({
++  label,
++  active,
++  onClick,
++  children,
++}: {
++  label: string;
++  active: boolean;
++  onClick: () => void;
++  children: React.ReactNode;
++}) {
++  return (
++    <button
++      type="button"
++      aria-pressed={active}
++      onClick={onClick}
++      className={`flex min-h-14 flex-col items-center justify-center gap-0.5 rounded-xl px-1 text-xs ${active ? "bg-moss text-parchment" : "text-ink hover:bg-parchment-deep"}`}
++    >
++      {children}
++      {label}
++    </button>
++  );
++}
++
+ function IconChip({
+   label,
+   pressed,
