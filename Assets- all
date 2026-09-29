@@ -1,0 +1,283 @@
+Assets_cozy_warm_brown/
+│
+├── assets/
+│   ├── _unklar/
+│   │
+│   ├── natur/
+│   │   ├── pflanzen/
+│   │   │   ├── pilze/
+│   │   │   ├── ranken_efeu/
+│   │   │   ├── blumen/
+│   │   │   ├── farne/
+│   │   │   ├── kulturpflanzen/
+│   │   │   └── gras_schilf/
+│   │   ├── baeume/
+│   │   │   ├── stuempfe_stamm/
+│   │   │   ├── tot_kahl/
+│   │   │   ├── obstbaeume/
+│   │   │   ├── laubbaeume/
+│   │   │   └── nadelbaeume/
+│   │   ├── buesche/
+│   │   │   ├── bluehend/
+│   │   │   ├── beeren/
+│   │   │   └── gruen/
+│   │   └── felsen/
+│   │       ├── gross/
+│   │       ├── klein/
+│   │       └── kristall_eis/
+│   │
+│   ├── moebel/
+│   │   ├── bad/
+│   │   ├── tische/
+│   │   ├── aufbewahrung/
+│   │   │   ├── regale/
+│   │   │   ├── truhen/
+│   │   │   ├── schraenke/
+│   │   │   └── kommoden/
+│   │   ├── deko/
+│   │   │   ├── zimmerpflanzen/
+│   │   │   ├── uhren/
+│   │   │   ├── sonstige/
+│   │   │   ├── spiegel/
+│   │   │   └── bilder/
+│   │   ├── feuerstellen/
+│   │   │   ├── kamin/
+│   │   │   └── ofen/
+│   │   ├── liegen/
+│   │   │   ├── betten/
+│   │   │   └── liegen_sonstige/
+│   │   ├── sitzen/
+│   │   │   ├── hocker/
+│   │   │   ├── stuehle/
+│   │   │   ├── sessel_sofas/
+│   │   │   └── baenke/
+│   │   ├── textilien/
+│   │   │   ├── teppiche/
+│   │   │   └── vorhaenge/
+│   │   ├── beleuchtung/
+│   │   │   ├── kerzen/
+│   │   │   └── lampen/
+│   │   └── kueche/
+│   │
+│   ├── figuren/
+│   │   ├── tiere/
+│   │   │   ├── fische/
+│   │   │   ├── wildtiere/
+│   │   │   ├── haustiere/
+│   │   │   ├── voegel/
+│   │   │   ├── insekten/
+│   │   │   └── nutztiere/
+│   │   ├── monster/
+│   │   │   ├── bosse/
+│   │   │   ├── daemonen/
+│   │   │   ├── untote/
+│   │   │   ├── schleime/
+│   │   │   ├── geister/
+│   │   │   └── bestien/
+│   │   ├── portraits/
+│   │   │   ├── menschen/
+│   │   │   └── nicht_menschlich/
+│   │   ├── humanoide/
+│   │   │   ├── schurken/
+│   │   │   │   ├── sonstige/
+│   │   │   │   ├── kultist/
+│   │   │   │   └── bandit/
+│   │   │   ├── adel/
+│   │   │   │   ├── koenig/
+│   │   │   │   ├── hofstaat/
+│   │   │   │   └── edelmann/
+│   │   │   ├── abenteurer/
+│   │   │   │   ├── wanderer/
+│   │   │   │   ├── bogenschuetze/
+│   │   │   │   ├── dieb/
+│   │   │   │   ├── krieger/
+│   │   │   │   └── magier/
+│   │   │   ├── fremde_voelker/
+│   │   │   │   ├── elfen/
+│   │   │   │   ├── zwerge/
+│   │   │   │   ├── sonstige/
+│   │   │   │   └── orks/
+│   │   │   ├── beruf/
+│   │   │   │   ├── schneider/
+│   │   │   │   ├── mueller/
+│   │   │   │   ├── gelehrter/
+│   │   │   │   ├── sonstige/
+│   │   │   │   ├── schmied/
+│   │   │   │   ├── handwerker/
+│   │   │   │   ├── wirt/
+│   │   │   │   ├── holzfaeller/
+│   │   │   │   ├── bote/
+│   │   │   │   ├── bauer/
+│   │   │   │   ├── jaeger/
+│   │   │   │   ├── wache/
+│   │   │   │   ├── haendler/
+│   │   │   │   ├── fischer/
+│   │   │   │   ├── heiler/
+│   │   │   │   ├── priester/
+│   │   │   │   └── baecker/
+│   │   │   ├── buerger/
+│   │   │   │   ├── frau/
+│   │   │   │   ├── greis/
+│   │   │   │   ├── mann/
+│   │   │   │   └── kind/
+│   │   │   └── held/
+│   │   └── fabelwesen/
+│   │
+│   ├── bauteile/
+│   │   ├── eingaenge_vordaecher/
+│   │   ├── mauern/
+│   │   ├── tore_boegen/
+│   │   ├── fenster/
+│   │   ├── tueren/
+│   │   ├── bruecken_stege/
+│   │   ├── treppen/
+│   │   ├── zaeune/
+│   │   │   ├── stein/
+│   │   │   └── holz/
+│   │   └── gelaender/
+│   │
+│   ├── effekte/
+│   │   ├── partikel/
+│   │   ├── rauch/
+│   │   ├── licht/
+│   │   ├── magie/
+│   │   ├── wetter/
+│   │   └── feuer/
+│   │
+│   ├── ui/
+│   │   ├── cursor/
+│   │   ├── rahmen/
+│   │   ├── schrift_ziffern/
+│   │   ├── panels_dialog/
+│   │   ├── banner/
+│   │   ├── icons/
+│   │   │   ├── 1520x1296/
+│   │   │   ├── 64x64/
+│   │   │   └── style_reference/
+│   │   ├── leisten_balken/
+│   │   └── buttons/
+│   │       ├── rund/
+│   │       ├── hexagon/
+│   │       └── rechteckig/
+│   │
+│   ├── props/
+│   │   ├── behaelter/
+│   │   │   ├── faesser/
+│   │   │   ├── kisten/
+│   │   │   └── saecke_koerbe/
+│   │   ├── nahrung/
+│   │   ├── handwerk_stationen/
+│   │   ├── brunnen/
+│   │   ├── buecher_schriften/
+│   │   ├── sonstiges/
+│   │   ├── werkzeug/
+│   │   ├── schilder_wegweiser/
+│   │   ├── aussen_beleuchtung/
+│   │   │   ├── lagerfeuer/
+│   │   │   ├── laternen/
+│   │   │   └── fackeln/
+│   │   └── marktstaende/
+│   │
+│   ├── wasser/
+│   │   ├── eis/
+│   │   ├── wasserfall/
+│   │   ├── ufer_klippen/
+│   │   ├── unterwasser/
+│   │   ├── kacheln/
+│   │   │   ├── flach/
+│   │   │   ├── wellen_ringe/
+│   │   │   └── tief/
+│   │   └── wasserpflanzen/
+│   │
+│   ├── gebaeude/
+│   │   ├── wohnhaeuser/
+│   │   │   ├── gross/
+│   │   │   └── klein/
+│   │   ├── teile/
+│   │   │   ├── schornsteine/
+│   │   │   ├── daecher/
+│   │   │   └── waende/
+│   │   ├── oeffentlich/
+│   │   │   ├── kirche/
+│   │   │   ├── wachhaus/
+│   │   │   └── rathaus/
+│   │   ├── landwirtschaft/
+│   │   │   ├── stall/
+│   │   │   ├── scheune/
+│   │   │   └── muehle/
+│   │   ├── befestigung/
+│   │   │   ├── turm/
+│   │   │   └── tor/
+│   │   └── gewerbe/
+│   │       ├── laden/
+│   │       ├── werkstatt/
+│   │       └── taverne/
+│   │
+│   ├── items/
+│   │   ├── schmuck_muenzen/
+│   │   ├── ruestung/
+│   │   ├── waffen/
+│   │   ├── quest/
+│   │   ├── materialien/
+│   │   ├── nahrung/
+│   │   ├── traenke/
+│   │   ├── schluessel/
+│   │   └── werkzeug/
+│   │
+│   ├── technik/
+│   │   ├── ventile/
+│   │   ├── rohre/
+│   │   ├── maschinen/
+│   │   └── zahnraeder/
+│   │
+│   ├── hintergruende/
+│   │   ├── szenen/
+│   │   ├── parallax/
+│   │   └── himmel/
+│   │
+│   ├── _quellen/
+│   │
+│   └── boden/
+│       ├── innen_fliesen/
+│       ├── erde/
+│       │   ├── pfad/
+│       │   ├── ackerboden/
+│       │   ├── sand_kies/
+│       │   └── lehm/
+│       ├── ziegel/
+│       ├── uebergaenge/
+│       │   ├── stein_holz/
+│       │   ├── gras_erde/
+│       │   └── ufer/
+│       ├── gras/
+│       │   ├── blumenwiese/
+│       │   ├── laub/
+│       │   ├── bewuchs/
+│       │   └── wiese/
+│       ├── stein/
+│       │   ├── kopfsteinpflaster/
+│       │   ├── bemoost/
+│       │   ├── platten/
+│       │   ├── muster/
+│       │   └── bruchstein/
+│       └── holz/
+│           ├── planken_verstaerkt/
+│           ├── rundhoelzer/
+│           ├── parkett/
+│           └── dielen/
+│
+├── KONTROLLTABELLE.csv
+├── STYLEGUIDE.txt
+│
+└── _quellen/
+    ├── hd_strip_00_items-misc_1520x1296.png
+    ├── hd_strip_01_organs-potions-ore_1520x1296.png
+    ├── hd_strip_02_food-gems_1520x1296.png
+    ├── hd_strip_03_magic-runes_1520x1296.png
+    ├── hd_strip_04_magic-elements_1520x1296.png
+    ├── hd_strip_05_colorbands-weak_1520x1296.png
+    ├── hd_strip_06_fire-dark-weapons_1520x1296.png
+    ├── hd_strip_07_weapons-color_1520x1296.png
+    ├── hd_strip_08_tools-armor_1520x1296.png
+    ├── hd_strip_09_clothes-coins_1520x1296.png
+    └── 64x64.png
